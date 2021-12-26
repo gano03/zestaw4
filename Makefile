@@ -3,7 +3,7 @@ CC = g++
 LIBS =
 CFLAGS = -Wall -std=c++11
 OBJECTS = test.o
-HFILES = arraylist.h
+HFILES = singlelist.h
 TARGET = test.out
 %.o : %.cpp $(HFILES) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
