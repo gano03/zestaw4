@@ -140,13 +140,18 @@ public:
     {
         SingleNode<T> *node = head;
         SingleNode<T> *newnode = new SingleNode<T>();
+        SingleNode<T> *backup = new SingleNode<T>();
         int i = 0;
         while(i != pos){
             i++;
+            if(i == pos){
+                break;
+            }
             node = node->next;
         }
-        newnode->next = node->next->next;
+        backup = node->next;
         node->next = newnode;
+        newnode->next = backup;
         newnode->value = item;
 
     } // inserts item before pos,
@@ -154,6 +159,7 @@ public:
     {
         SingleNode<T> *node = head;
         SingleNode<T> *newnode = new SingleNode<T>();
+        SingleNode<T> *backup = new SingleNode<T>();
         if(pos == 0){
             push_front(item);
             return;
@@ -165,10 +171,14 @@ public:
         int i = 0;
         while(i != pos){
             i++;
+            if(i == pos){
+                break;
+            }
             node = node->next;
         }
-        newnode->next = node->next->next;
+        backup = node->next;
         node->next = newnode;
+        newnode->next = backup;
         newnode->value = item;
 
     } // inserts item before pos,
