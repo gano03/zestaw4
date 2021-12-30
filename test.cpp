@@ -26,10 +26,12 @@ int main (void)
     obj.push_back(14);
     std::cout << obj.front() <<"\n";
     std::cout << obj.back() << "\n";
+    obj[0] = 8;
+    obj.display();
 
     L = obj;
     L.display();
-
+    
     L[2] = 5;
     L.display();
 
@@ -42,6 +44,8 @@ int main (void)
     L.pop_front();
     L.pop_back();
     L.display();
+    obj.display();
+
 
     std::cout << "Rozmiar listy to " <<obj.size()<<"\n";
     L.insert(1,10);

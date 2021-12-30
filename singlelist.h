@@ -24,16 +24,34 @@ public:
     ~SingleList(); // tu trzeba wyczyscic wezly
     SingleList(const SingleList& other)
     {
-        head = other.head;
-        tail = other.tail;
+        SingleNode<T> *othernode = other.head;
+        while(othernode != nullptr){
+            if (!empty()) {
+            tail->next = new SingleNode<T>(othernode->value);
+            tail = tail->next;
+            }       
+            else{
+            head = tail = new SingleNode<T>(othernode->value);
+            }
+            othernode = othernode->next;
+        }
     } // copy constructor
     // usage:   SingleList<int> list2(list1);
     SingleList(SingleList&& other); // move constructor NIEOBOWIAZKOWE
     // usage:   SingleList<int> list2(std::move(list1));
     SingleList& operator=(const SingleList& other)
     {
-        head = other.head;
-        tail = other.tail;
+        SingleNode<T> *othernode = other.head;
+        while(othernode != nullptr){
+            if (!empty()) {
+            tail->next = new SingleNode<T>(othernode->value);
+            tail = tail->next;
+            }       
+            else{
+            head = tail = new SingleNode<T>(othernode->value);
+            }
+            othernode = othernode->next;
+        }
         return *this;
     } // copy assignment operator, return *this
     // usage:   list2 = list1;
@@ -64,10 +82,11 @@ public:
     void clear()
     {
         SingleNode<T> *node = head;
-        while(node != nullptr){
-            node->value = 0;
-            node = node->next;
-        }   
+        while(!empty()){
+            node = head->next;
+            delete head;
+            head = node;
+        }
     } // czyszczenie listy z elementow O(n)
     void display(); // O(n)
     //void reverse(); // O(n)
